@@ -17,7 +17,7 @@
 
         }
         .form-style-8 h2{
-            background: darkseagreen;
+            background: #4D4D4D;
             text-transform: uppercase;
             font-family: 'Open Sans Condensed', sans-serif;
             color: #ffffff;
@@ -25,7 +25,6 @@
             font-weight: 100;
             padding: 20px;
             margin: -30px -30px 30px -30px;
-            text-align: center;
         }
         .form-style-8 input[type="text"],
         .form-style-8 input[type="date"],
@@ -61,8 +60,8 @@
         .form-style-8 input[type="submit"]{
             -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
             -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
-            box-shadow: inset 0px 1px 0px 0px #5e9b9b;
-            background-color: darkslategrey;
+            box-shadow: inset 0px 1px 0px 0px #45D6D6;
+            background-color: #2CBBBB;
             border: 1px solid #27A0A0;
             display: inline-block;
             cursor: pointer;
@@ -78,36 +77,3 @@
             background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
             background-color:#34CACA;
         }
-
-        .tombol{
-          -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
-          -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
-          box-shadow: inset 0px 1px 0px 0px #5e9b9b;
-          background-color: darkslategrey;
-          border: 1px solid #27A0A0;
-          display: inline-block;
-          cursor: pointer;
-          color: #FFFFFF;
-          font-family: 'Open Sans Condensed', sans-serif;
-          font-size: 14px;
-          padding: 8px 18px;
-          text-decoration: none;
-          text-transform: uppercase;
-          margin-left: 150px;
-        }
-
-        .tombol:hover{
-          background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
-          background-color:#34CACA;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            text-align: center;
-            margin-bottom: 20px;
-          }
-
-          th{
-              background-color: lightblue;
-            }

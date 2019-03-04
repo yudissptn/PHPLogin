@@ -1,6 +1,5 @@
 <?php
 $base_url = "http://".$_SERVER['SERVER_NAME'].'/ProjectBaru/';
-include 'vars.php';
  ?>
 
  <!DOCTYPE html>
@@ -10,45 +9,33 @@ include 'vars.php';
      <meta http-equiv="X-UA-Compatible" content="IE-edge, chrome-1">
      <title>Taxation Online</title>
      <link rel="stylesheet" href="<?php echo $base_url;?>css/style.css" type="text/css">
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   </head>
+        </head>
    <body>
-   <?php 
-   session_start();
-   if(isset($_SESSION['Username']) && $_SESSION['Username'] != ''){
-    echo 'Login sukses. Klik untuk logoff';?>
-    <a href="logoff.php"><button class="tombol-tabel"  style="margin-left:20px">Logoff</button></a>
-    <div class="form-style-8">
-    <h2>
-    <?php   
-      echo "Welcome ".$_SESSION['Nama']."!!";   
+     <?php
+     session_start();
+     if(isset($_SESSION['username']) and $_SESSION['username'] != ''){
+       $conn  = mysqli_connect("127.0.0.1","root","","Bebas");
+       $sql = 'select s.*, h.nama_hobi from info_siswa s left join hobi h on h.id_siswa=s.id_siswa';
+       $sql_query = mysqli_query($conn,$sql);
+       echo "<div class='form-style-8'>";
+       echo "<table width = '100%>'";
+       echo "<tr><th>No</th><th>NIK</th><th>Nama</th><th>Alamat</th><th>Hobi</th><th>Action</th></tr>";
+       if (mysqli_num_rows($sql_query) > 0) {
+         $nomor=1;
+         while ($row = mysqli_fetch_assoc($sql_query)) {
+           echo '<tr><td>'.$nomor.'</td><td>'.$row['nik'].'</td><td>'.$row['nama'].'</td><td>'.$row['alamat'].'</td><td>'.$row['nama_hobi'].'</td>
+           <td><a href="update.php/?id_siswa='.$row['id_siswa'].'">Update</a> &nbsp;
+           <a href="hapus.php?id='.$row['id_siswa'].'">Delete</a></td></tr>';
+        $nomor++;
+         }
+       } else {
+         echo "<tr><td>Data tidak ditemukan</td><td>";
+       }
+        echo "</table>";
+        echo '<a href="logoff.php"><input type="submit" value="Logoff!" name="logoff" style="margin-left:200px;"/><br></a>';
+        echo "</div>";
+             }else{
       ?>
-    </h2>
-    <button class="tombol-tabel" onClick=tampilkanTabel();>Detail Information</button> 
-    </div>
-    <div class="tabel">
-     <table width=100%>
-     <tr>
-       <th>Nama</th>
-       <th>NRP</th>
-       <th>Jurusan</th>
-       <th>Username</th>
-       <th>Alamat</th>
-       <th>Company</th>
-     </tr>
-     <tr>
-       <td><?= $_SESSION['Nama']; ?></td>
-       <td><?= $_SESSION['NRP']; ?></td>
-       <td><?= $_SESSION['Jurusan']; ?></td>
-       <td><?= $_SESSION['Username']; ?></td>
-       <td><?= $_SESSION['Alamat']; ?></td>
-       <td><?= $_SESSION['Company']; ?></td>
-     </tr>
-    </table>
-   </div>
-   <?php
-   }else{
-   ?>
      <form name="Taxation" action="<?php echo $base_url; ?>login.php" id="taxation_form" method="get">
        <div class="form-style-logo">
          <a href="<?php echo $base_url; ?>pajak"><img src="<?php echo $base_url; ?>images/main_logo.png" width="200" height="55"></a>
@@ -58,27 +45,23 @@ include 'vars.php';
          <input type="text" name="username" placeholder="username" id="username"><br>
          <input type="password" name="password" placeholder="password" id="password"><br>
          <br><br>
-         <input type="submit" value="Login!" name="login" id="login" onClick=checkInput();><br>
+         <input type="submit" value="Login!" name="login" id="login" onclick="checkInput()"/><br>
        </div>
      </form>
    <?php } ?>
-   <script>
-   function tampilkanTabel(){
-     let tabelData = document.getElementsByClassName("tabel");
-     tabelData[0].style.display = 'block';
-   }
-   function checkInput(){
-     var username = document.getElementById("username").value;
-     var password = document.getElementById("password").value;
-     console.log("hhhh");
-     if(username == '' && password == ''){
-       alert("Isi Username dan Password");
-       return true;
-     }else if(password == ''){
-       alert("Isi password");
-       return false;
-     }    
-   }
+   <script type="text/javascript">
+    function checkInput(){
+      console.log("tes");
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      if (username == '' && password == '') {
+        alert("Isi username dan password");
+      }else if (password == '') {
+        alert("Isikan password");
+      }
+    }
    </script>
+
    </body>
  </html>
