@@ -19,6 +19,7 @@ $base_url = "http://".$_SERVER['SERVER_NAME'].'/ProjectBaru/';
        $sql_query = mysqli_query($conn,$sql);
        echo "<div class='form-style-8'>";
        echo "<table width = '100%>'";
+       echo "<tr><td colspan='6' style='text-align: left'><a href='".$base_url."input.php'>Input Data</a></td></tr>";
        echo "<tr><th>No</th><th>NIK</th><th>Nama</th><th>Alamat</th><th>Hobi</th><th>Action</th></tr>";
        if (mysqli_num_rows($sql_query) > 0) {
          $nomor=1;
